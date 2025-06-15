@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Ship, Zap, Weight, Shield, Users, Cpu, Wrench, Crosshair } from 'lucide-react';
+import { Rocket, Zap, Weight, Shield, Users, Cpu, Wrench, Crosshair } from 'lucide-react';
 import './starshipBuilder.css'; // Import the CSS file
 import ShipComponentSelector from './components/ShipComponentselector';
 
@@ -228,7 +228,7 @@ const StarshipBuilder = () => {
       <div className="container">
         <div className="header">
           <h1>
-            <Ship className="icon-lg icon-blue" />
+            <Rocket className="icon-lg icon-blue" />
             Starship Builder
           </h1>
           <p>For use with Custom 5e Ship Combat Rules</p>
@@ -265,7 +265,7 @@ const StarshipBuilder = () => {
               
               <div className="status-item">
                 <span className="status-label">
-                  <Ship className="icon icon-blue" />
+                  <Rocket className="icon icon-blue" />
                   Ship Points:
                 </span>
                 <span className="status-value info">{totalSP}</span>
@@ -437,7 +437,7 @@ const StarshipBuilder = () => {
         {/* Ship Summary */}
         <div className="card" style={{ marginTop: '2rem' }}>
           <h2>
-            <Ship className="icon icon-blue" />
+            <Rocket className="icon icon-blue" />
             Ship Summary
           </h2>
           <div className="hull-details">
