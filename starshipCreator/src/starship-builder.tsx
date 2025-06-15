@@ -231,7 +231,7 @@ const StarshipBuilder = () => {
             <Ship className="icon-lg icon-blue" />
             Starship Builder
           </h1>
-          <p>Design your perfect starship for 5e campaigns</p>
+          <p>For use with Custom 5e Ship Combat Rules</p>
         </div>
 
         <div className="status-grid">
@@ -345,31 +345,31 @@ const StarshipBuilder = () => {
 
             <ShipComponentSelector
               componentName="Quarters"
-              selectedComponent={selectedComponents.bridge}
+              selectedComponent={selectedComponents.quarters}
               handleComponentChange={handleComponentChange}
             />
 
             <ShipComponentSelector
               componentName="Thrusters"
-              selectedComponent={selectedComponents.bridge}
+              selectedComponent={selectedComponents.thrusters}
               handleComponentChange={handleComponentChange}
             />
 
             <ShipComponentSelector
               componentName="Core"
-              selectedComponent={selectedComponents.bridge}
+              selectedComponent={selectedComponents.core}
               handleComponentChange={handleComponentChange}
             />
 
           <ShipComponentSelector
               componentName="Life Support"
-              selectedComponent={selectedComponents.bridge}
+              selectedComponent={selectedComponents.lifeSupport}
               handleComponentChange={handleComponentChange}
             />
 
             <ShipComponentSelector
               componentName="Shields"
-              selectedComponent={selectedComponents.bridge}
+              selectedComponent={selectedComponents.shields}
               handleComponentChange={handleComponentChange}
             />
             </div>
