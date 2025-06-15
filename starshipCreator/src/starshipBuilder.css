@@ -1,0 +1,341 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.6;
+}
+
+/* Main container */
+.starship-builder {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  color: white;
+  padding: 1.5rem;
+}
+
+.container {
+  max-width: 87rem;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.header p {
+  color: #d1d5db;
+}
+
+/* Grid layouts */
+.status-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .status-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.components-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .components-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Cards */
+.card {
+  background-color: #1e293b;
+  border-radius: 0.5rem;
+  border: 1px solid #475569;
+  padding: 1.5rem;
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card h3 {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Status panel */
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.status-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-value {
+  font-family: 'Courier New', monospace;
+}
+
+.status-value.success {
+  color: #4ade80;
+}
+
+.status-value.error {
+  color: #f87171;
+}
+
+.status-value.info {
+  color: #60a5fa;
+}
+
+/* Warnings */
+.warning-box {
+  background-color: rgba(127, 29, 29, 0.3);
+  border: 1px solid #b91c1c;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+}
+
+.warning-title {
+  font-weight: 600;
+  color: #fca5a5;
+  margin-bottom: 0.5rem;
+}
+
+.warning-text {
+  font-size: 0.875rem;
+  color: #fecaca;
+}
+
+/* Hull selection */
+.hull-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.hull-option input[type="radio"] {
+  margin-right: 0.75rem;
+  transform: scale(1.2);
+}
+
+.hull-card {
+  background-color: #334155;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex: 1;
+}
+
+.hull-card:hover {
+  background-color: #475569;
+}
+
+.hull-name {
+  font-weight: 600;
+}
+
+.hull-stats {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* Special rules box */
+.special-rules {
+  margin-top: 1rem;
+  background-color: rgba(30, 58, 138, 0.3);
+  border: 1px solid #3b82f6;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+}
+
+.special-rules p {
+  font-size: 0.875rem;
+  color: #bfdbfe;
+}
+
+/* Hull details */
+.hull-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.hull-details strong {
+  font-weight: 600;
+}
+
+/* Component sections */
+.component-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Form elements */
+.select-input {
+  width: 100%;
+  background-color: #334155;
+  border: 1px solid #475569;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.select-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.component-description {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}
+
+/* Checkbox components */
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.checkbox-item input[type="checkbox"] {
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+  transform: scale(1.2);
+}
+
+.checkbox-card {
+  background-color: #334155;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex: 1;
+}
+
+.checkbox-card:hover {
+  background-color: #475569;
+}
+
+.component-name {
+  font-weight: 600;
+}
+
+.component-stats {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.component-desc {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+/* Icons */
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-lg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.icon-blue {
+  color: #60a5fa;
+}
+
+.icon-green {
+  color: #4ade80;
+}
+
+.icon-orange {
+  color: #fb923c;
+}
+
+.icon-yellow {
+  color: #fbbf24;
+}
+
+.icon-purple {
+  color: #a78bfa;
+}
+
+.icon-red {
+  color: #f87171;
+}
+
+.icon-cyan {
+  color: #22d3ee;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .starship-builder {
+    padding: 1rem;
+  }
+  
+  .header h1 {
+    font-size: 1.875rem;
+  }
+  
+  .card {
+    padding: 1rem;
+  }
+}
