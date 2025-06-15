@@ -3,23 +3,36 @@ import { Rocket, Zap, Weight, Shield, Cpu, Wrench, Crosshair } from 'lucide-reac
 import './starshipBuilder.css'; // Import the CSS file
 import ShipComponentSelector from './components/ShipComponentselector';
 import { hulls, components } from './constants/shipComponents';
+import WeaponSelector from './components/WeaponSelector';
 
 const StarshipBuilder = () => {
 
 
-
+  type SelectedComponents = {
+  bridge: string;
+  crewquarters: string | null;
+  thrusters: string;
+  core: string | null;
+  lifesupport: string | null;
+  shields: string | null;
+  weapons: Record<string, string | null>;
+  supplemental: any[];
+};
   
 
   // State
   const [selectedHull, setSelectedHull] = useState('frigate');
-  const [selectedComponents, setSelectedComponents] = useState({
+  const [selectedComponents, setSelectedComponents] = useState<SelectedComponents>({
     bridge: 'standard',
     crewquarters: selectedHull === 'fighter' ? null : 'standard',
     thrusters: 'standard',
     core: selectedHull === 'fighter' ? null : 'mk1',
     lifesupport: selectedHull === 'fighter' ? null : 'standard',
     shields: selectedHull === 'fighter' ? null : 'kinetic',
-    weapons: [],
+    weapons: selectedHull === 'fighter' ? {"forward": null} : 
+      selectedHull === 'frigate' ? {"forward": null, "port": null, "starboard": null} : selectedHull === 'cruiser' ?
+      {"forward": null, "port 1": null, "port 2": null, "starboard 1": null, "starboard 2": null, "aft": null} :
+      {"forward 1": null, "forward 2": null, "port 1": null, "port 2": null, "starboard 1": null, "starboard 2": null, "aft": null},
     supplemental: []
   });
 
@@ -29,18 +42,19 @@ const StarshipBuilder = () => {
       setSelectedComponents(prev => ({
         ...prev,
         bridge: 'fighterCockpit',
-        quarters: null,
+        crewquarters: null,
         core: null,
-        lifeSupport: null,
-        shields: null
+        lifesupport: null,
+        shields: null,
+        weapons: { "forward": null },
       }));
     } else {
       setSelectedComponents(prev => ({
         ...prev,
         bridge: prev.bridge === 'fighterCockpit' ? 'standard' : prev.bridge,
-        quarters: prev.crewquarters || 'standard',
+        crewquarters: prev.crewquarters || 'standard',
         core: prev.core || 'mk1',
-        lifeSupport: prev.lifesupport || 'standard',
+        lifesupport: prev.lifesupport || 'standard',
         shields: prev.shields || 'kinetic'
       }));
     }
@@ -99,8 +113,9 @@ const StarshipBuilder = () => {
     }
 
     // Weapons
-    selectedComponents.weapons.forEach(weaponKey => {
-      const weapon = components.weapons[weaponKey];
+    Object.entries(selectedComponents.weapons).forEach(([hardpointName, weaponKey]) => {
+      if (!weaponKey) return;
+      const weapon = components.weapons[weaponKey.toLowerCase().replace(/\s+/g, '') as keyof typeof components.weapons];
       totalMass += weapon.mass;
       totalPower += weapon.power;
       totalSP += weapon.sp;
@@ -134,14 +149,15 @@ const StarshipBuilder = () => {
     }));
   };
 
-  const handleWeaponToggle = (weaponKey) => {
-    setSelectedComponents(prev => ({
-      ...prev,
-      weapons: prev.weapons.includes(weaponKey) 
-        ? prev.weapons.filter(w => w !== weaponKey)
-        : [...prev.weapons, weaponKey]
-    }));
-  };
+  const handleWeaponChange = (hardpoint: string, weaponKey: string | null) => {
+  setSelectedComponents(prev => ({
+    ...prev,
+    weapons: {
+      ...prev.weapons,
+      [hardpoint]: weaponKey
+    }
+  }));
+};
 
   const handleSupplementalToggle = (suppKey) => {
     setSelectedComponents(prev => ({
@@ -150,15 +166,6 @@ const StarshipBuilder = () => {
         ? prev.supplemental.filter(s => s !== suppKey)
         : [...prev.supplemental, suppKey]
     }));
-  };
-
-  const getValidBridges = () => {
-    if (selectedHull === 'fighter') {
-      return { fighterCockpit: components.bridges.fighterCockpit };
-    } else {
-      const { fighterCockpit, ...otherBridges } = components.bridges;
-      return otherBridges;
-    }
   };
 
   const getValidSupplemental = () => {
@@ -330,25 +337,7 @@ const StarshipBuilder = () => {
                 <Crosshair className="icon icon-red" />
                 Weapons
               </h3>
-              <div className="checkbox-list">
-                {Object.entries(components.weapons).map(([key, weapon]) => (
-                  <div key={key} className="checkbox-item">
-                    <input
-                      type="checkbox"
-                      id={`weapon-${key}`}
-                      checked={selectedComponents.weapons.includes(key)}
-                      onChange={() => handleWeaponToggle(key)}
-                    />
-                    <label htmlFor={`weapon-${key}`} className="checkbox-card">
-                      <div className="component-name">{weapon.name}</div>
-                      <div className="component-stats">
-                        Mass: {weapon.mass} | Power: {weapon.power} | SP: {weapon.sp} | Damage: {weapon.damage}
-                      </div>
-                      <div className="component-desc">{weapon.description}</div>
-                    </label>
-                  </div>
-                ))}
-              </div>
+              <WeaponSelector selectedComponents={selectedComponents} handleWeaponChange={handleWeaponChange}/>
             </div>
 
             {/* Supplemental Components */}

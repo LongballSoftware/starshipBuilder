@@ -40,9 +40,9 @@ const hulls = {
           enhanced: { name: 'Enhanced Kinetic Barrier', mass: 6, power: 10, sp: 2, shieldPoints: 20, description: 'Provides 20 shield points using mass effect fields.' }
         },
         weapons: {
-          massAccelerator: { name: 'Mass Accelerator', mass: 3, power: 5, sp: 1, damage: '1d8', description: 'Fires solid metal slugs accelerated to incredible speeds.' },
-          gardianLaser: { name: 'GARDIAN Laser', mass: 5, power: 8, sp: 2, damage: '2d6 (½ vs shields)', description: 'Defense system laser, deals half damage against shields.' },
-          disruptorTorpedo: { name: 'Disruptor Torpedo', mass: 5, power: 2, sp: 2, damage: '1d10 (double vs shields)', description: 'Single-use torpedoes effective against shields. 5 torpedoes per battery.' }
+          massaccelerator: { name: 'Mass Accelerator', mass: 3, power: 5, sp: 1, damage: '1d8', description: 'Fires solid metal slugs accelerated to incredible speeds.' },
+          gardianlaser: { name: 'GARDIAN Laser', mass: 5, power: 8, sp: 2, damage: '2d6 (½ vs shields)', description: 'Defense system laser, deals half damage against shields.' },
+          disruptortorpedo: { name: 'Disruptor Torpedo', mass: 5, power: 2, sp: 2, damage: '1d10 (double vs shields)', description: 'Single-use torpedoes effective against shields. 5 torpedoes per battery.' }
         },
         supplemental: {
           armory: { name: 'Armory', mass: 3, power: 1, sp: 2, description: 'Holds spare weaponry and ammunition.' },
