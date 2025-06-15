@@ -16,7 +16,7 @@ const hulls = {
           recon: { name: 'Recon Bridge', mass: 8, power: 12, sp: 2, description: 'Bridge designed with exploration as its primary focus. Grants advantage on Perception/Investigation checks.' },
           combat: { name: 'Combat Bridge', mass: 10, power: 10, sp: 2, description: 'Bridge designed for military engagements. Grants +1 to all attacks.' }
         },
-        quarters: {
+        crewquarters: {
           cramped: { name: 'Cramped Quarters', mass: 2, power: 3, sp: 0, description: 'Cramped living quarters. Roll d20 after long rest, gain exhaustion on natural 1.' },
           standard: { name: 'Standard Quarters', mass: 5, power: 5, sp: 1, description: 'Standard rooms with few recreational facilities.' },
           luxury: { name: 'Luxury Quarters', mass: 6, power: 8, sp: 2, description: 'Spacious quarters with amenities. Gain 1d4 bonus after long rest.' }

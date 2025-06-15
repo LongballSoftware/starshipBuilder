@@ -29,8 +29,8 @@ const ShipComponentSelector: React.FC<ShipComponentSelectorProps> = ({
           const { fighterCockpit, ...otherBridges } = components.bridges;
           return otherBridges;
         }
-      case 'quarters':
-        return components.quarters;
+      case 'crew quarters':
+        return components.crewquarters;
       case 'thrusters':
         return components.thrusters;
       case 'core':
@@ -53,7 +53,7 @@ const ShipComponentSelector: React.FC<ShipComponentSelectorProps> = ({
       case 'bridge':
         return components.bridges[selectedComponent as keyof typeof components.bridges]?.description;
       case 'crew quarters':
-        return components.quarters[selectedComponent as keyof typeof components.quarters]?.description;
+        return components.crewquarters[selectedComponent as keyof typeof components.crewquarters]?.description;
       case 'thrusters':
         return components.thrusters[selectedComponent as keyof typeof components.thrusters]?.description;
       case 'core':
@@ -63,7 +63,7 @@ const ShipComponentSelector: React.FC<ShipComponentSelectorProps> = ({
       case 'shields':
         return components.shields[selectedComponent as keyof typeof components.shields]?.description;
       default:
-        return null;
+        return 'component not found';
     }
   };
 
@@ -74,7 +74,7 @@ const ShipComponentSelector: React.FC<ShipComponentSelectorProps> = ({
               <h3>{componentName}</h3>
               <select 
                 value={selectedComponent || ''} 
-                onChange={(e) => handleComponentChange(componentName.toLowerCase(), e.target.value)}
+                onChange={(e) => handleComponentChange(componentName.toLowerCase().replace(/\s+/g, ''), e.target.value)}
                 className="select-input"
               >
                 {Object.entries(getValidComponents()).map(([key, comp]) => (

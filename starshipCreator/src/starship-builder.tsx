@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Rocket, Zap, Weight, Shield, Users, Cpu, Wrench, Crosshair } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Rocket, Zap, Weight, Shield, Cpu, Wrench, Crosshair } from 'lucide-react';
 import './starshipBuilder.css'; // Import the CSS file
 import ShipComponentSelector from './components/ShipComponentselector';
 import { hulls, components } from './constants/shipComponents';
@@ -14,10 +14,10 @@ const StarshipBuilder = () => {
   const [selectedHull, setSelectedHull] = useState('frigate');
   const [selectedComponents, setSelectedComponents] = useState({
     bridge: 'standard',
-    quarters: selectedHull === 'fighter' ? null : 'standard',
+    crewquarters: selectedHull === 'fighter' ? null : 'standard',
     thrusters: 'standard',
     core: selectedHull === 'fighter' ? null : 'mk1',
-    lifeSupport: selectedHull === 'fighter' ? null : 'standard',
+    lifesupport: selectedHull === 'fighter' ? null : 'standard',
     shields: selectedHull === 'fighter' ? null : 'kinetic',
     weapons: [],
     supplemental: []
@@ -38,9 +38,9 @@ const StarshipBuilder = () => {
       setSelectedComponents(prev => ({
         ...prev,
         bridge: prev.bridge === 'fighterCockpit' ? 'standard' : prev.bridge,
-        quarters: prev.quarters || 'standard',
+        quarters: prev.crewquarters || 'standard',
         core: prev.core || 'mk1',
-        lifeSupport: prev.lifeSupport || 'standard',
+        lifeSupport: prev.lifesupport || 'standard',
         shields: prev.shields || 'kinetic'
       }));
     }
@@ -63,8 +63,8 @@ const StarshipBuilder = () => {
       totalSP += bridge.sp;
     }
 
-    if (selectedComponents.quarters) {
-      const quarters = components.quarters[selectedComponents.quarters as keyof typeof components.quarters];
+    if (selectedComponents.crewquarters) {
+      const quarters = components.crewquarters[selectedComponents.crewquarters as keyof typeof components.crewquarters];
       totalMass += quarters.mass;
       totalPower += quarters.power;
       totalSP += quarters.sp;
@@ -84,8 +84,8 @@ const StarshipBuilder = () => {
       totalSP += core.sp;
     }
 
-    if (selectedComponents.lifeSupport) {
-      const lifeSupport = components.lifeSupport[selectedComponents.lifeSupport as keyof typeof components.lifeSupport];
+    if (selectedComponents.lifesupport) {
+      const lifeSupport = components.lifeSupport[selectedComponents.lifesupport as keyof typeof components.lifeSupport];
       totalMass += lifeSupport.mass;
       totalPower += lifeSupport.power;
       totalSP += lifeSupport.sp;
@@ -291,7 +291,7 @@ const StarshipBuilder = () => {
 
             <ShipComponentSelector
               componentName="Crew Quarters"
-              selectedComponent={selectedComponents.quarters}
+              selectedComponent={selectedComponents.crewquarters}
               handleComponentChange={handleComponentChange}
             />
 
@@ -309,7 +309,7 @@ const StarshipBuilder = () => {
 
           <ShipComponentSelector
               componentName="Life Support"
-              selectedComponent={selectedComponents.lifeSupport}
+              selectedComponent={selectedComponents.lifesupport}
               handleComponentChange={handleComponentChange}
             />
 
@@ -391,9 +391,9 @@ const StarshipBuilder = () => {
             <div><strong>Total Mass:</strong> {totalMass}/{hull.maxMass}</div>
             <div><strong>Total Power:</strong> {totalPower > 0 ? '+' : ''}{totalPower}</div>
             <div><strong>Total Ship Points:</strong> {totalSP}</div>
-            <div><strong>Final Speed:</strong> {hull.speed + (selectedComponents.thrusters ? components.thrusters[selectedComponents.thrusters].speedMod : 0)}</div>
+            <div><strong>Final Speed:</strong> {hull.speed + (selectedComponents.thrusters ? components.thrusters[selectedComponents.thrusters as keyof typeof components.thrusters].speedMod : 0)}</div>
             {selectedComponents.shields && (
-              <div><strong>Shield Points:</strong> {components.shields[selectedComponents.shields].shieldPoints}</div>
+              <div><strong>Shield Points:</strong> {components.shields[selectedComponents.shields as keyof typeof components.shields].shieldPoints}</div>
             )}
             <div><strong>Hardpoints Available:</strong> {hull.hardpoints.length}</div>
             <div><strong>Weapons Mounted:</strong> {selectedComponents.weapons.length}</div>
